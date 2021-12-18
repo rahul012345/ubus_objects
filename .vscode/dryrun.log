@@ -1,0 +1,5 @@
+make --dry-run --always-make --keep-going --print-directory
+make: Entering directory '/home/rahul/Desktop/RND/new_rasp/sw_rahul_pack'
+cc  -o ubus_object ./src/ubus_object.c -lubus -lubox
+make: Leaving directory '/home/rahul/Desktop/RND/new_rasp/sw_rahul_pack'
+ 
