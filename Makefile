@@ -4,4 +4,4 @@ LIBS:=${STAGING_DIR}/target-aarch64_cortex-a53_musl/root-bcm27xx/lib/
 #need to attach here to make the compilation work fine to create a executable
 
 ubus_object: ./src/ubus_object.c
-	$(CC) ${CFLAGS} -o ubus_object ./src/ubus_object.c -lubus -lubox
+	$(CC) ${CFLAGS} -o ubus_object ./src/ubus_object.c -lubus -lubox -luci
