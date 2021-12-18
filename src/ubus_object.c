@@ -113,7 +113,7 @@ int main()
 	struct uci_element *s = NULL;
 	struct uci_ptr ptr;
 
-	uci_foreach_element(&my_config_pkg->section, e) {
+	uci_foreach_element(&my_config_pkg->sections, e) {
 
 		s = uci_to_section(e);
 		fprintf(stderr,"get section\n");
