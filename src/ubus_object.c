@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <stdint.h>
 #include <libubus.h>
+#include <uci.h>
+
 #include <syslog.h>
 
 static struct ubus_context *ctx = NULL;
@@ -105,22 +107,22 @@ int main()
 	struct uci_context *context = uci_alloc_context();
 	my_config_pkg = calloc(1,sizeof(struct uci_package));
 
-	if(uci_load(context , "/etc/config/alarm",&my_config_pkg)){
+	if(uci_load(context , "/etc/config/alarm",&my_config_pkg)) {
 		system("echo uci_load failed >> /tmp/xyz");
 	}
 	struct uci_element *e =NULL;
 	struct uci_element *s = NULL;
-	struct uci_ptr ptr = NULL;
+	struct uci_ptr ptr;
 
-	uci_foreach_element(&my_config_pkg->section, e) {
+	uci_foreach_element(&my_config_pkg->sections, e) {
 
 		s = uci_to_section(e);
 		fprintf(stderr,"get section\n");
-		if(strcmp(s->type, "common") == 0)
+	//	if(strcmp(s->type, "com") == 0)
 		{
 			char val[64] = {'\0'};
 			memset(val,0,sizeof(val));
-			sprintf(val,"alarm.common.Alarmlist=%s",'x');
+			sprintf(val,"test.common.templist=%s",(char*)"m");
 			if(uci_lookup_ptr(context,&ptr,val,true) == UCI_OK) {
 				fprintf(stderr,"get pointer\n");
 				if(uci_set(context,&ptr) == UCI_OK){
